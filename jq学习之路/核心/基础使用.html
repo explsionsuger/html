@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  div,span {
+    width: 100px;
+    height: 40px;
+    float:left;
+    padding: 10px;
+    margin: 10px;
+    background-color: #EEEEEE;
+  }
+  .active{
+  	background: black;
+  	color: white;
+  }
+  </style>
+</head>
+<body>
+  <form action="" method="post">
+  	<input type="radio" value="form1" name="radio"/>
+  </form>
+  <form action="" method="post">
+  	<input type="radio" value="form2" name="radio"/>
+  </form>
+  			
+	<button>Change colors</button>
+	<span></span> 
+	<div></div> 
+	<div></div>
+	
+	<div></div> 
+	<div></div>
+	<div id="stop">Stop here</div> 
+	<div></div>
+	
+	<div></div>
+	<div></div>
+  
+  <ul></ul>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(function(){			//$(document).ready()的简写。当DOM加载完成后执行的函数
+		
+//		jQuery([selector,[context]])在文档的第一个表单中，查找所有的单选按钮(即: type 值为 radio 的 input 元素)。
+			console.log($("input:radio", document.forms[0]).val());
+			
+//			创建一个 <input> 元素，同时设定 type 属性、属性值，以及一些事件。
+			$("<input>", {
+			  type: "text",
+			  val: "Test",
+			  focusin: function() {
+			    $(this).addClass("active");
+			  },
+			  focusout: function() {
+			    $(this).removeClass("active");
+			  }
+			}).appendTo("form");
+
+//			each()对于每个匹配的元素所要执行的函数,this 指代的是 DOM 对象而非 jQuery 对象
+			$("button").click(function () { 
+				$("div").each(function (index, domEle) { // index == 索引， domEle == this 
+				  
+				  $(domEle).css("backgroundColor", "yellow");  
+				  if ($(this).is("#stop")) { 
+				  $("span").text("Stopped at div index #" + index); 
+				  return false; 
+				  } 
+				});
+			});
+			
+//			selector返回用什么选择器来找到这个元素的
+			$("ul").append("<li>" + $("ul").selector + "</li>")
+						  .append("<li>" + $("ul li").selector + "</li>")
+						  .append("<li>" + $("div#foo ul:not([class])").selector + "</li>");
+		});
+		
+//		在一个div上存取数据
+		$("div").data("blah");  // undefined
+		$("div").data("blah", "hello");  // blah设置为hello
+		$("div").data("blah");  // hello
+		$("div").data("blah", 86);  // 设置为86
+		$("div").data("blah");  //  86
+		$("div").removeData("blah");  //移除blah
+		$("div").data("blah");  // undefined
+		
+		console.log($.makeArray($("div")))
+	</script> 
+</body>
+</html>

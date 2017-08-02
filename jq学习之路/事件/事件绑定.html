@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  button { margin:5px; }
+button#theone { color:red; background:yellow; }
+#foo{background:#ddd}
+</style>
+</head>
+<body>
+	 <button id="theone">Does nothing...</button>
+<button id="bind">Add Click</button>
+<button id="unbind">Remove Click</button>
+<div style="display:none;">Click!</div>
+<div id="foo">
+	测试foo
+</div>
+<div id="trigger">
+	测试trigger
+</div>
+<button id="old">.trigger("focus")</button>
+<button id="new">.triggerHandler("focus")</button><br/><br/>
+ 
+<input type="text" value="To Be Focused"/>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function aClick() {
+		  $("div").show().fadeOut("slow");
+		}
+//		.on( events [, selector ] [, data ], handler(eventObject) )在选定的元素上绑定一个或多个事件处理函数
+		$("#bind").click(function () {
+		  $("body").on("click", "#theone", aClick)
+		    .find("#theone").text("Can Click!");
+		});
+//		.off( events [, selector ] [, handler ] )移除一个事件处理函数。	
+		$("#unbind").click(function () {
+		  $("body").off("click", "#theone", aClick)
+		    .find("#theone").text("Does nothing...");
+		});
+		
+//		.one( events [, data ], handler(eventObject) )为元素的事件添加处理函数。处理函数在每个元素上每种事件类型最多执行一次
+		$( "#foo" ).one( "click mouseover", function( event ) {
+//			由于两个事件类型(click 和 mouseover)，alert可以显示两次
+		  alert( "The " + event.type + " event happened!" );
+		});
+		
+//		.trigger( eventType [, extraParameters ] )根据绑定到匹配元素的给定的事件类型执行所有的处理程序和行为
+		$('#trigger').on('custom', function(event, param1, param2) {
+		  alert(param1 + "\n" + param2);
+		});
+		$('#trigger').click(function(){
+			$('#trigger').trigger('custom', ['Custom', 'Event']);
+		})
+		
+//		.triggerHandler( eventType [, extraParameters ] )为一个事件执行附加到元素的所有处理程序
+//如果您使用 .triggerHandler() 触发 focus 事件，那么它只会触发绑定了该事件的处理函数，而浏览器的默认 focus 动作是不会被触发的。
+		$("#old").click(function(){
+		$("input").trigger("focus");
+		});
+		$("#new").click(function(){
+		$("input").triggerHandler("focus");
+		});
+		$("input").focus(function(){
+		$("<span>Focused!</span>").appendTo("body").fadeOut(1000);
+		});
+		
+		
+	</script> 
+</body>
+</html>

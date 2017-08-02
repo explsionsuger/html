@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+   div { color:blue; }
+  p { color:green; }
+  span { color:red; display:none; }
+</style>
+</head>
+<body>
+	<form>
+	  <input id="target" type="text" value="Hello there" />
+	</form>
+	<div id="other1">
+	  Trigger the handler
+	</div>
+	<div id="other2">
+	  Trigger the handler
+	</div>
+	<div id="other3">
+	  Trigger the handler
+	</div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.keydown( handler(eventObject) )为 "keydown" 事件绑定一个处理函数，或者触发元素上的 "keydown" 事件
+  var num1=0,num2=0,num3=0;
+	$('#target').keydown(function() {
+	  $("#other1").text('Handler for .keydown() called.'+ ++num1);
+	});
+	
+//	.keypress( handler(eventObject) )为 "keypress" 事件绑定一个处理函数，或者触发元素上的 "keypress" 事件
+	$("#target").keypress(function() {
+	  $("#other2").text("Handler for .keypress() called."+ ++num2);
+	});
+	
+//	.keyup( handler(eventObject) )为 "keyup" 事件绑定一个处理函数，或者触发元素上的 "keyup" 事件
+	$('#target').keyup(function() {
+	  $("#other3").text('Handler for .keyup() called.'+ ++num3);
+	});
+	</script> 
+</body>
+</html>

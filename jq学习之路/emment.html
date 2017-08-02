@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--标签嵌套-->
+		<!--div>ul>li-->
+		<div>  
+		    <ul>  
+		        <li></li>  
+		    </ul>  
+		</div>
+		
+		<!--标签并列-->
+		<!--div+p+bq-->
+		<div></div>  
+		<p></p>  
+		<blockquote></blockquote>
+		
+		<!--向上一级
+		div+div>p>span+em-->
+		<div></div>  
+		<div>  
+	    <p><span></span><em></em></p>  
+	    </div>
+	    
+	    <!--向上跳N层
+		div+div>p>span+em^^^p-->
+	    <div></div>
+	    <div>
+	    	<p><span></span><em></em></p>
+	    </div>
+	    <p></p>
+	    
+	    <!--输入多个标签
+		ul>li*5-->
+		<ul>  
+		    <li></li>  
+		    <li></li>  
+		    <li></li>  
+		    <li></li>  
+		    <li></li>  
+		</ul>
+		
+  		<!--ul>li*2>a-->
+		<ul>
+		    <li><a href=""></a></li>
+		    <li><a href=""></a></li>
+		</ul>
+		
+		<!--标签分组
+		div>(header>ul>li*2>a)+footer>p-->
+		<div>  
+		    <header>  
+		        <ul>  
+		            <li><a href=""></a></li>  
+		            <li><a href=""></a></li>  
+		        </ul>  
+		    </header>  
+		    <footer>  
+		        <p></p>  
+		    </footer>  
+		</div>
+		
+		<!--把分组的括号和“*”联合使用：
+		(div>dl>(dt+dd)*3)+footer>p-->
+		<div>  
+		    <dl>  
+		        <dt></dt>  
+		        <dd></dd>  
+		        <dt></dt>  
+		        <dd></dd>  
+		        <dt></dt>  
+		        <dd></dd>  
+		    </dl>  
+		</div>  
+		<footer>  
+		    <p></p>  
+		</footer>
+		
+		<!--输入属性
+		输入ID和CLASS属性
+		div#header+div.page+div#footer.class1.class2.class3-->
+		<div id="header"></div>  
+		<div class="page"></div>  
+		<div id="footer" class="class1 class2 class3"></div> 
+		
+		<!--其他属性
+		td[title="hello world" colspan=3]-->
+		<td title="hello world" colspan="3"></td>
+		
+		<!--可以自增长的数字
+		ul>li.item$*5-->
+		<ul>  
+		    <li class="item1"></li>  
+		    <li class="item2"></li>  
+		    <li class="item3"></li>  
+		    <li class="item4"></li>  
+		    <li class="item5"></li>  
+		</ul> 
+		
+		<!--ul>li.item$$$*11-->
+		<ul>  
+		    <li class="item001"></li>  
+		    <li class="item002"></li>  
+		    <li class="item003"></li>  
+		    <li class="item004"></li>  
+		    <li class="item005"></li> 
+		</ul>
+		
+		<!--标签内的文字
+		a{click me}-->
+		<a href="">Click me</a>  
+		
+		<!--p>{Click}+a{here}+{to continue}-->
+		<p>Click <a href="">here</a> to continue</p> 
+		
+		
+	</body>
+</html>

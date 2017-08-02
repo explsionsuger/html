@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//		jQuery.ajax( url [, settings ] )执行一个异步的HTTP（Ajax）的请求
+		$.ajax({
+		  url: "test.html",
+		  cache: false
+		}).done(function( html ) {
+		  $("#results").append(html);
+		});
+		
+//		jQuery.ajaxSetup( options )为以后要用到的Ajax请求设置默认的值
+		$.ajaxSetup({
+		   url: "/xmlhttp/",
+		   global: false,
+		   type: "POST"
+		 
+		 });
+
+
+		//ajax数据
+		 $.ajax({ data: myData });
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#loading{
+			    width:80px;
+				height: 20px;
+				background:#bbb;
+				color:#000;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="trigger1">Trigger complete</div>
+		<div class="trigger2">Trigger Error</div>
+		<div id="loading">加载中...</div>
+		<div class="result"></div>
+		<div class="log"></div>
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			.ajaxError( handler(event, jqXHR, ajaxSettings, thrownError) )Ajax请求出错时注册一个回调处理函数
+			$(document).ajaxError(function() {
+			  $( "div.log" ).text( "Triggered ajaxError handler." );
+			});
+			
+			$( ".trigger2" ).click(function() {
+				$( ".result" ).load( "message.html" );
+			});
+			
+//			.ajaxSuccess( handler(event, XMLHttpRequest, ajaxOptions) ) 绑定一个函数当 Ajax 请求成功完成时执行
+			$(document).ajaxSuccess(function() {
+			  $( ".log" ).text( "Triggered ajaxSuccess handler." );
+			});
+			
+//		.ajaxComplete( handler(event, XMLHttpRequest, ajaxOptions) )当Ajax请求完成后注册一个回调函数
+			$(document).ajaxComplete(function() {
+//				$( ".log" ).text( "Triggered ajaxComplete handler." );
+			});
+			
+			$( ".trigger1" ).click(function() {
+				$( ".result" ).load( "test.html" );
+			});
+			
+//		   .ajaxSend( handler(event, jqXHR, ajaxOptions) )在Ajax请求发送之前绑定一个要执行的函数
+		   $(document).ajaxSend(function() {
+			  $( "div.log" ).text( "Triggered ajaxSend handler." );
+			});
+//			.ajaxStart( handler() )在AJAX 请求刚开始时执行一个处理函数
+			$(document).ajaxStart(function(){
+		      $("#loading").show();
+		   });
+//		   .ajaxStop( handler() )在AJAX 请求完成时执行一个处理函数
+		   $(document).ajaxStop(function(){
+		      $("#loading").text("加载完成");
+		   });
+		   
+		</script>
+	</body>
+</html>

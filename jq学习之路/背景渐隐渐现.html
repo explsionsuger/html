@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>javascript渐隐渐显的背景颜色</title>
+<style fprolloverstyle>A:hover {color: #FF0000}
+div{
+	width: 100px;
+	height: 100px;
+}
+</style>
+</head>
+<body onLoad="fadeIn(15)">
+<script language="JavaScript">
+var Color= new Array("ff","ee","dd","cc","bb","aa","99","88","77","66","55","44","33","22","11","00");
+function fadeIn(n) {
+if (n >= 1) {
+document.bgColor="#" +"00"+ Color[n] +"00"; 
+n -= 1;
+setTimeout("fadeIn("+n+")", 100);
+}
+else{setTimeout('fadeOut(1)', 100);}
+}
+function fadeOut(n) {
+if (n <=(Color.length-1)) {
+document.bgColor="#" +Color[n] +"0000";
+n += 1;
+setTimeout("fadeOut("+n+")", 100)
+}
+else{setTimeout("fadeIn("+(Color.length-1)+")", 100);}
+}
+</script>
+<div></div>
+</body>
+</html>

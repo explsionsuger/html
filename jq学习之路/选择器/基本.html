@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div{
+				width: 100px;
+				height: 100px;
+				background: green;
+				position: absolute;
+				top: 200px;
+				left: 200px;
+			}
+			.focused {
+			    background: #abcdef;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+		    <li>list item 1</li>
+			<h1>Header 1</h1>
+		    <li>list item 2</li>
+		    <li>list item 3</li>
+		    <li>list item 4</li>
+			<h2>Header 2</h2>
+		    <li>list item 5</li>
+		    <li>list item 6</li>
+		    <li></li>
+		</ul>
+		<ul>
+		  <li>Glen</li>
+		  <li>Tane</li>
+		  <li>Ralph</li>
+		</ul>
+		<button id="run">Run</button><div id="div" name="hi"></div>
+		<div id="content">
+		    <input tabIndex="1">
+		    <input tabIndex="2">
+		    <select tabIndex="3">
+		        <option>select menu</option>
+		    </select>
+		    <div tabIndex="4">
+		        a div
+		    </div>
+		</div>
+		<div><p>Hello</p></div>
+		<input type="hidden" name="id" />
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//（:first）第一个元素
+			$('li:first');						//第一个li
+			
+//			:last()获取最后个元素
+			$('li:last');						//最后一个li
+
+//			:not(selector)去除所有与给定选择器匹配的元素
+			$("li:not(li:first)");				//除了第一个li的其他li
+			
+
+//			:even 匹配所有索引值为偶数的元素，从 0 开始计数
+			$("li:even");						//0,2,4的li
+			
+//			:odd  匹配所有索引值为奇数的元素，从 0 开始计数
+			$("li:odd");						//1,3,5的li
+			
+//			:eq(index) 匹配一个给定索引值的元素
+			$("li:eq(1)")						//第二个li
+			
+//			:gt(index)匹配所有大于给定索引值的元素
+			$("li:gt(1)")						//大于第二个li的元素
+			
+//			:lt(index)匹配所有小于给定索引值的元素
+			$("li:lt(2)")						//小于第三个li的元素
+			
+//			:header匹配如 h1, h2, h3之类的标题元素
+			$(":header").css("background", "#EEE");
+			
+//			:animated匹配所有正在执行动画效果的元素
+			$("#run").click(function(){
+			  $("div:not(:animated)").animate({ left: "+=20" }, 1000);
+			});
+			
+//			:focus匹配当前获取焦点的元素。
+			$( "#content" ).delegate( "*", "focus blur", function( event ) {
+			    var elem = $( this );
+			    setTimeout(function() {
+			       elem.toggleClass( "focused", elem.is( ":focus" ) );
+			    }, 0);
+			});
+
+//			:contains(text)匹配包含给定文本的元素
+			$(":header:contains('Header')")		//包含Header的标题元素
+			
+//			:empty匹配所有不包含子元素或者文本的空元素
+			$("li:empty");
+			
+//			:has(selector)匹配含有选择器所匹配的元素的元素
+			$("div:has(p)").addClass("test");
+			
+//			:parent匹配含有子元素或者文本的元素
+			$("li:parent","ul")						//查找所有含有子元素或者文本的 td 元素
+			
+//			:hidden匹配所有不可见元素，或者type为hidden的元素
+			$("input:hidden")
+			
+//			:visible匹配所有的可见元素
+			$("input:visible")
+			
+//			[attribute]匹配包含给定属性的元素
+			$("div[id]")
+			console.log($("div[id]"))
+//			[attribute=value]匹配给定的属性是某个特定值的元素
+			$("div[id='div']")
+			console.log($("div[id='div']"))
+//			[attribute!=value]匹配所有不含有指定的属性，或者属性不等于特定值的元素
+			$("div[id!='div']")
+			console.log($("div[id!='div']"))
+//			[attribute^=value]匹配给定的属性是以某些值开始的元素
+			$("div[id^='di']")
+			console.log($("div[id^='di']"))
+//			[attribute$=value]匹配给定的属性是以某些值结尾的元素
+			$("div[id$='er']")
+			console.log($("div[id$='nt']"))
+//			[attribute*=value]匹配给定的属性是以包含某些值的元素
+			$("div[id*='i']")
+			console.log($("div[id*='i']"))
+//			[selector1][selector2][selectorN]复合属性选择器，需要同时满足多个条件时使用
+			$("div[id][name]")
+			console.log($("div[id][name]"))
+			
+		</script>
+	</body>
+</html>

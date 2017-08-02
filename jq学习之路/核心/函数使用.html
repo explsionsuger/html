@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  div { margin:3px; width:40px; height:40px;
+        position:absolute; left:0px; top:30px; 
+        background:green; display:none; }
+  div.newcolor { background:blue; }
+  span { color:red; }
+</style>
+</head>
+<body>
+	<button id="show">Show Length of Queue</button>
+	<span></span>
+	
+	<input type="checkbox"/>
+	<input type="radio"/>
+	<div></div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(function(){			//$(document).ready()的简写。当DOM加载完成后执行的函数
+		
+//		queue显示或操作在匹配元素上执行的函数队列
+	$("#show").click(function () {
+		setInterval(function(){
+	      var n = $("div").queue("fx");
+	      $("span").text("Queue length is: " + n.length);
+		},300)
+	});
+	function runIt() {
+	      $("div").show("slow");
+	      $("div").animate({left:'+=200'},2000);
+	      $("div").slideToggle(1000);
+	      $("div").slideToggle("fast");
+	      $("div").animate({left:'-=200'},1500);
+	      $("div").hide("slow");
+	      $("div").show(1200);
+	      $("div").slideUp("normal", runIt);
+	}
+  runIt();
+  
+//jQuery.fn.extend(object)扩展 jQuery 元素集来提供新的方法（通常用来制作插件）
+	  jQuery.fn.extend({
+	  check: function() {
+	    return this.each(function() { this.checked = true; });
+	  },
+	  uncheck: function() {
+	    return this.each(function() { this.checked = false; });
+	  }
+	});
+	$("input[type=checkbox]").check();
+	$("input[type=radio]").uncheck();
+	
+//	扩展jQuery对象本身
+	jQuery.extend({
+	  min: function(a, b) { return a < b ? a : b; },
+	  max: function(a, b) { return a > b ? a : b; }
+	});
+	jQuery.min(2,3);
+	jQuery.max(4,5);
+	
+//	运行这个函数将变量$的控制权让渡给第一个实现它的那个库
+//	有助于确保jQuery不会与其他库的$对象发生冲突
+//	jQuery.noConflict();
+//	(function($) { 
+//	  $(function() {
+//	    // 使用 $ 作为 jQuery 别名的代码
+//	  });
+//	})(jQuery);
+//	// 其他用 $ 作为别名的库的代码
+
+
+	})	
+	</script> 
+</body>
+</html>

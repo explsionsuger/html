@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  #orig, #copy, #copy-correct {
+    float: left;
+    width: 20%;
+  }
+  .clear{
+  	clear: both;
+  }
+</style>
+</head>
+<body>
+		<div id="orig">
+	    <div class="elem"><a>1</a></div>
+	    <div class="elem"><a>2</a></div>
+	    <div class="elem"><a>3</a></div>
+	    <div class="elem"><a>4</a></div>
+	    <div class="elem"><a>5</a></div>
+	</div>
+	<div id="copy"></div>
+	<div id="copy-correct"></div>
+	<div class="clear"></div>
+		
+	
+	<div class="container">
+  <div class="inner first">Hello</div>
+  <div class="inner second">And</div>
+  <div class="inner third">Goodbye</div>
+  <div class="inner four">hello world</div>
+</div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// sort order is not guaranteed here and may vary with browser
+	$('#copy').append($('#orig .elem')
+	          .clone()
+	          .children('a')
+	          .prepend('foo - ')
+	          .parent()
+	          .clone());
+	 
+	// correct way to approach where order is maintained
+	$('#copy-correct')
+	          .append($('#orig .elem')
+	          .clone()
+	          .children('a')
+	          .prepend('bar - ')
+	          .end());
+	
+//	.replaceAll( target ) target一个选择器字符串，jQuery对象，DOM元素，或者元素数组，包含哪个元素被替换
+//	 用来替换的元素从老地方移到新位置，而不是复制。
+//		.replaceAll() 方法会删除与节点相关联的所有数据和事件处理程序 。
+	 $('.first').replaceAll('.second');
+//	 .replaceAll()和.replaceWith()功能类似，但是目标和源相反
+	 $('.third').replaceWith($('.four'));
+		
+	</script> 
+</body>
+</html>

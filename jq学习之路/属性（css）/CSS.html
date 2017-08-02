@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.highlight{
+				background: greenyellow;
+			}
+			p{cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<p>
+		  Once upon a time there was a man
+		  who lived in a pizza parlor. This
+		  man just loved pizza and ate it all
+		  the time.  He went on to be the
+		  happiest man in the world.  The end.
+		</p>
+			<p>1 </p>
+			<p>2 </p>
+			<p id="thr" class="three">3 </p>
+			<p>4 </p>
+			<ul>
+			      <li>Hello</li>
+			      <li>Hello</li>
+			      <li>Hello</li>
+			</ul>
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			addClass(class|fn)为每个匹配的元素添加指定的类名
+			$('ul li:last').addClass(function() {
+			  return 'item-' + $(this).index();
+			});
+			
+//			  .hasClass( className )返回: Boolean
+//			确定任何一个匹配元素是否有被分配给定的（样式）类。
+			console.log("$(#thr).hasClass(three):"+$("#thr").hasClass("three"))
+			
+//			removeClass([class|fn])从所有匹配的元素中删除全部或者指定的类，多个要删除的CSS类名，请用空格分开
+//			从匹配的元素中删除 'selected' 类
+			$("p").removeClass("selected");
+//			删除匹配元素的所有类
+			$("p").removeClass();
+			
+//			toggleClass(class|fn,state)如果存在（不存在）就删除（添加）一个类,一个布尔值（不止是真值/假值），用于判断样式是否应该被添加或移除
+			 var count = 0;
+			  $("p").not(":first").click(function(){
+			      $(this).toggleClass("highlight");
+			  });
+			  
+//			.css( propertyName )获取匹配元素集合中的第一个元素的样式属性的计算值
+			  var words = $("p:first").text().split(" ");
+			  var text = words.join("</span> <span>");
+			  $("p:first").html("<span>" + text + "</span>");
+			  $("span").click(function () {
+			    $(this).css("background-color","yellow");
+			  });
+			  
+//			  jQuery.cssNumber对象的键是驼峰式命名，并且其值都设置成true。如果你想阻止的.css()
+//			  方法自动添加px单位到特定的CSS属性，你可以添加一个额外的属性到jQuery.cssNumber对象。
+				jQuery.cssNumber.someCSSProp = true;
+			  
+		</script>
+	</body>
+</html>

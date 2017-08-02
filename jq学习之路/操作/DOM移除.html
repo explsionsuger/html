@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  p { background:yellow; margin:6px 0; } 
+  p.off { background: black; }
+   div {
+    border: 2px solid blue;
+  }
+  p {
+    background: yellow;
+    margin: 4px;
+  }
+</style>
+</head>
+<body>
+  <p>Hello</p>
+  who are
+  <p>you?</p>
+  <button class="detach">Attach/detach paragraphs</button>
+  <button class="unwrap">wrap/unwrap paragraphs</button>
+  <div class="container">
+  <div class="hello">Hello</div>
+  <div class="goodbye">Goodbye</div>
+</div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.detach( [selector ] )从DOM中去掉所有匹配的元素
+//		删除元素，不破坏他们的数据或事件处理程序（这些绑定的信息还可以在之后被重新添加回来），使用.detach()
+    var p;
+    $(".detach").click(function(){
+    	console.log(p)
+      if ( p ) {
+        p.appendTo("body");
+        p = null;
+      } else {
+        p = $("p").detach();
+      }
+    });
+    
+//  .empty()从DOM中移除集合中匹配元素的所有子节点(同时移除元素上的事件及 jQuery 数据)
+    $('.hello').empty();
+    
+//  .remove( [selector ] )将匹配元素集合从DOM中删除（同时移除元素上的事件及 jQuery 数据）
+    $('.goodbye').remove();
+    
+//  .unwrap()将匹配元素集合的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置
+    var pTags = $( "p" );
+		$( ".unwrap" ).click(function() {
+		  if ( pTags.parent().is( "div" ) ) {
+		    pTags.unwrap();
+		  } else {
+		    pTags.wrap( "<div></div>" );
+		  }
+		});
+	</script> 
+</body>
+</html>

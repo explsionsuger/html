@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  li { margin: 3px; padding: 3px; background: #EEEEEE; }
+  li.hilight { background: yellow; }
+  div{border: 2px solid black;}
+  div.after { border-color: red; }
+</style>
+</head>
+<body>
+	<ul>
+   <li>list item 1</li>
+   <li>list item 2</li>
+   <li class="third-item">list item 3</li>
+   <li>list item 4</li>
+   <li>list item 5</li>
+</ul>
+
+<p>Hello (this is a paragraph)</p>
+ 
+  <div><span>Hello Again (this span is a child of the a div)</span></div>
+  <p>And <span>Again</span> (in another paragraph)</p>
+ 
+  <div>And One Last <span>Time</span> (most text directly in a div)</div>
+  
+   <dl>
+  <dt id="term-1">term 1</dt>
+  <dd>definition 1-a</dd>
+  <dd>definition 1-b</dd>
+  <dd>definition 1-c</dd>
+  <dd>definition 1-d</dd>
+ 
+  <dt id="term-2">term 2</dt>
+  <dd>definition 2-a</dd>
+  <dd>definition 2-b</dd>
+  <dd>definition 2-c</dd>
+ 
+  <dt id="term-3">term 3</dt>
+  <dd>definition 3-a</dd>
+  <dd>definition 3-b</dd>
+</dl>
+
+<div><span>Hello</span></div>
+ 
+  <p class="selected">Hello Again</p>
+  <p>And Again</p>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.addBack( [selector ] )添加堆栈中元素集合到当前集合，一个选择性的过滤选择器		
+	$('li.third-item').nextAll().addBack()
+  .css('background-color', 'red');
+  
+//.children( [selector ] )获得匹配元素集合中每个元素的子元素，选择器选择性筛选
+  $("div").children().css("border-bottom", "3px double red");
+  
+//.closest( selector ) 从元素本身开始，在DOM 树上逐级向上级元素匹配，并返回最先匹配的祖先元素
+    $( document ).bind("click", function( e ) {
+	    $( e.target ).closest("li").toggleClass("hilight");
+	  });
+	  
+//	  .find( selector ) 通过一个选择器，jQuery对象，或元素过滤，得到当前匹配的元素集合中每个元素的后代
+	   var $spans = $('span');
+  		$("p").find( $spans ).css('color','red');
+  		
+//		.next( [selector ] )取得匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合。如果提供一个选择器，那么只有紧跟着的兄弟元素满足选择器时，才会返回此元素
+  		$('li.third-item').next().css('background-color', 'ccc');
+  		
+//		.nextAll( [selector ] )获得每个匹配元素集合中所有下面的同辈元素，选择性筛选的选择器
+  		$("div:first").nextAll().addClass("after");
+  		
+//		.nextUntil( [selector ] [, filter ] )通过选择器，DOM节点，或jQuery对象得到每个元素之后的所有兄弟元素，但不包括匹配的元素
+  		$("#term-2").nextUntil("dt")
+			  .css("background-color", "red");
+			var term3 = document.getElementById("term-3");
+			$("#term-1").nextUntil(term3, "dd")
+			  .css("color", "green");
+			  
+//			.prev( [selector ] ) 获取集合中每个匹配元素紧邻的前一个兄弟元素。如果提供了一种选择器，它将只检索匹配该选择器的紧邻的前一个兄弟元素
+			$('li.third-item').prev().css('background-color', 'red');
+			
+//			.prevAll( [selector ] ) 获得集合中每个匹配元素的所有前面的兄弟元素，选择性筛选的选择器
+			$('li.third-item').prevAll().css('background-color', 'red');
+			
+//			.prevUntil( [selector ] [, filter ] )获取每个元素但不包括选择器，DOM节点，或者jQuery对象匹配的元素的所有前面的兄弟元素
+			$("#term-2").prevUntil("dt")
+			  .css("background-color", "red");
+			var term1 = document.getElementById('term-1');
+			$("#term-3").prevUntil(term1, "dd")
+			  .css("color", "green");
+			  
+//			.siblings( [selector ] )获得匹配元素集合中每个元素的兄弟元素,可以提供一个可选的选择器
+			$("p").siblings(".selected").css("background", "yellow");
+	</script> 
+</body>
+</html>

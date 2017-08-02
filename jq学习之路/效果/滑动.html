@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  div.down { background:#de9a44; margin:3px; width:80px;
+height:40px; display:none; float:left; }
+.clean{clear: both;}
+</style>
+</head>
+<body>
+	<p class="slideDown"> Click me!</p>
+	<div>
+		
+<div class="down"></div>
+<div class="down"></div>
+<div class="down"></div>
+<div class="log"></div>
+	</div>
+<div class="clean">
+	
+</div>
+<div>
+ <button>Toggle</button>
+ <span></span>
+ <p class="toggle">
+ This is the paragraph to end all paragraphs.  You
+ should feel <em>lucky</em> to have seen such a paragraph in
+ your life.  Congratulations!
+ </p>
+</div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(".slideDown").click(function () {
+if ($("div.down").is(":hidden")) {
+//	.slideDown( [duration ] [, complete ] )用滑动动画显示一个匹配元素
+$("div.down").slideDown("slow",function(){
+	$(".log").text("slideDown done")
+});
+} else {
+//	.slideUp( [duration ] [, complete ] )用滑动动画隐藏一个匹配元素
+$("div.down").slideUp("fast",function(){
+	$(".log").text("slideUp done")
+});
+}
+});
+
+//.slideToggle( [duration ] [, complete ] )用滑动动画显示或隐藏一个匹配元素
+var n = 0;
+ $("button").click(function () {
+ $("p.toggle").slideToggle("normal",function(){
+ 	$("span").text("slideToggle down "+ ++n)
+ });
+ });
+	</script> 
+</body>
+</html>

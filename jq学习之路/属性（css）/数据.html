@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		  div { margin:2px; color:blue; }
+		  span { color:red; }
+		</style>
+	</head>
+	<body>
+		<div data-role="page" data-last-value="43" data-hidden="true" data-options='{"name":"John"}'>
+			数据容器
+		</div>
+		<p>Result: </p>
+		
+	  <div>value1 before creation: <span></span></div>
+	  <div>value1 after creation: <span></span></div>
+	  <div>value1 after removal: <span></span></div>
+	 
+	  <div>value2 after removal: <span></span></div>
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//		.data( key ) 返回匹配的元素集合中的第一个元素的给定名称的数据存储的值。 通过.data(name, value)或HTML5 data-* 属性设置
+		/**从jQuery 1.4.3起， HTML 5 data- 属性 将自动被引用到jQuery的数据对象中。嵌入式破折号处理属性（ attributes）的方式
+		在 jQuery 1.6 中已经改变，以使之符合W3C HTML5 规范.**/
+		console.log($("div").data("role") === "page");
+		console.log($("div").data("lastValue") === 43);
+		console.log($("div").data("hidden") === true);
+		console.log($("div").data("options").name === "John");
+			
+		console.log( $("body").data("foo")); //undefined
+		$("body").data("bar", "foobar");
+		console.log( $("body").data("bar")); //foobar
+		
+//		jQuery的事件系统是使用jQuery数据 存储事件处理程序的。 因此，使用.on(), .bind(), .live(), .delegate()，
+//		或一个速记事件方法 绑定事件到一个元素上的时候，也会在那个元素上关联一个 data 对象。
+		var $p = $("p"), p = $p[0];
+		$p.append($.hasData(p)+" "); /* false */
+		 
+		$.data(p, "testing", 123);
+		$p.append($.hasData(p)+" "); /* true*/
+		 
+		$.removeData(p, "testing");
+		$p.append($.hasData(p)+" "); /* false */
+		 
+		$p.on('click', function() {});
+		$p.append($.hasData(p)+" "); /* true */
+		 
+		$p.off('click');
+		$p.append($.hasData(p)+" "); /* false */
+		
+//		添加的版本: 1.2.3.removeData( [name ] )
+//		要移除的存储数据名.
+//		添加的版本: 1.7.removeData( [list ] )
+//		一个数组或空间分隔的字符串命名要删除的数据块。
+	    $("span:eq(0)").text("" + $("div").data("test1"));
+	    $("div").data("test1", "VALUE-1");
+	    $("div").data("test2", "VALUE-2");
+	    $("span:eq(1)").text("" + $("div").data("test1"));
+	    $("div").removeData("test1");
+	    $("span:eq(2)").text("" + $("div").data("test1"));
+	    $("span:eq(3)").text("" + $("div").data("test2"));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+   div { color:blue; }
+  p { color:green; }
+  span { color:red; display:none; }
+</style>
+</head>
+<body>
+	
+  <div>Try scrolling the iframe.</div>
+  <p>Paragraph - <span>Scroll happened!</span></p>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.ready( handler ) 当DOM准备就绪时，指定一个函数来执行
+//	当$快捷方式不再可用时，$.noConflict()可以用于避免命名空间冲突
+//	jq2 = jQuery.noConflict();
+//	jq2(function( $ ) {
+	  // 在这个代码块中可以像往常一样使用 $ ;实际的jQuery 对象是 jq2 
+//	});
+	
+//	.resize( handler(eventObject) )为 JavaScript 的 "resize" 事件绑定一个处理函数，或者触发元素上的该事件
+	$(window).resize(function() {
+	  console.log('<div>' + $(window).width() + '</div>');
+	});
+	
+//	.scroll( handler(eventObject) )为 JavaScript 的 "scroll" 事件绑定一个处理函数，或者触发元素上的该事件
+	for(var i = 0;i < 5;i++){ 
+		$("p").clone().appendTo(document.body);
+	}
+	$(window).scroll(function () {
+	  $("span").css("display", "inline").fadeOut("slow");
+	});
+	
+	
+	</script> 
+</body>
+</html>

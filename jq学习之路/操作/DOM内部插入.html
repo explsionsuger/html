@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  #orig, #copy, #copy-correct {
+    float: left;
+    width: 20%;
+  }
+  .clear{
+  	clear: both;
+  	font-weight: bold;
+  }
+  div { border:2px blue solid; margin:2px; padding:2px; }
+  p { background:yellow; margin:2px; padding:2px; }
+  strong { color:red; }
+</style>
+</head>
+<body>
+	<h2>Greetings</h2>
+	<h2>one</h2>
+	<h3>h3</h3>
+	<div class="container">
+	  <div class="inner">Hello</div>
+	  <div class="inner">Goodbye</div>
+	</div>
+	<h2>two</h2>
+	
+	<div class="demo-container">
+  <div class="demo-box">Demonstration Box</div>
+  <ul>
+  <li>list item 1</li>
+  <li>list <strong>item</strong> 2</li>
+  </ul>
+  </div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.append( content [, content ] )在每个匹配元素里面的末尾处插入参数内容。
+		$('.inner').append('<p>Test append</p>');
+//		如果一个被选中的元素被插入到另外一个地方，这是移动而不是复制：如果有多个目标元素，内容将被复制然后按顺序插入到每个目标里面。
+		$('.container').append($('h2'),$("h3"));
+//		.appendTo( target )将匹配的元素插入到目标元素的最后面,.append()和.appendTo()两种方法功能相同，主要的不同是内容和目标的位置不同
+//		$('<p>Test</p>').appendTo('.inner');
+		
+		
+//		.prepend( content [, content ] )将参数内容插入到每个匹配元素的前面
+		$('.inner').prepend('<p>Test prepend</p>');
+//		.prepend()和.prependTo()实现同样的功能，主要的不同是语法，插入的内容和目标的位置不同
+//		$('<p>Test</p>').prependTo('.inner');
+
+
+//		.text()得到匹配元素集合中每个元素的合并文本，包括他们的后代,设置一个<script>元素的内容， 其不包含HTML， 使用的 .text()方法
+		console.log($('div.demo-container').text())
+
+//		.html( htmlString )设置每一个匹配元素的html内容
+		$('div.demo-container').text('<p>This is a test.</p>');
+		
+
+//		.html() 获取集合中第一个匹配元素的HTML内容,得到scripts元素的值，使用.html()方法
+		console.log($('div.demo-container').html())
+		
+//		.html( htmlString )设置每一个匹配元素的html内容。
+		$('div.demo-container').html('<p>All new content. <em>You bet!</em></p>');
+		
+		
+		
+	</script> 
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div{
+				width: 100px;
+				height: 100px;
+				background: green;
+				position: absolute;
+				top: 200px;
+				left: 200px;
+			}
+			.focused {
+			    background: #abcdef;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+		    <li>list item 1</li>
+		    <li>list item 2</li>
+		    <li>list item 3</li>
+		    <li>list item 4</li>
+		    <li>list item 5</li>
+		    <li>list item 6</li>
+		    <li></li>
+		</ul>
+		<ul>
+		  <li>Glen</li>
+		  <li>Tane</li>
+		  <li>Ralph</li>
+		</ul>
+		<ul>
+		  <li>Glen</li>
+		</ul>
+		<div id="n1">
+		    <div id="n2" class="abc">
+		        <label id="n3">label1</label>
+		        <span id="n4">span1</span>
+		        <span id="n5" class="abc">span2</span>
+		        <span id="n6">span3</span>
+		    </div>
+		    <div id="n7">
+		        <span id="n8" class="abc">span1</span>
+		        <span id="n9">span2</span>
+		    </div>
+		</div>
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+//			:first-child匹配所给选择器( :之前的选择器)的第一个子元素
+//			类似的 :first 匹配第一个元素，但是:first-child选择器可以匹配多个：即为每个父级元素匹配第一个子元素。这相当于:nth-child(1)
+			$("ul li:first-child")
+			console.log($("ul li:first-child"))
+			
+//			:first-of-type{1.9+}结构化伪类，匹配E的父元素的第一个E类型的孩子。等价于 :nth-of-type(1) 选择器
+			//:last-of-type{1.9+}匹配E的父元素的最后一个E类型的孩子,跟 :first-of-type 差不多
+			$(".abc:first-of-type");
+			console.log($(".abc:first-of-type"))
+			//.abc可以匹配id分别为n2、n5、n8的3个元素，n2是n1所有div类型子元素中的第一个，n8是n7所有span类型子元素中的第一个，但n5不是n2所有span类型子元素中的第一个，因此不能匹配n5。
+			
+//			:last-child匹配最后一个子元素
+//			:last 只匹配最后一个元素，而此选择符将为每个父元素匹配最后一个子元素
+			$("ul li:last-child")
+			console.log($("ul li:last-child"))
+			
+//			:nth-child匹配其父元素下的第N个子或奇偶元素
+//			:eq(index) 匹配选择器指定序列的元素，而这个将为每一个父元素匹配子元素
+			$("ul li:nth-child(2)")
+			console.log($("ul li:nth-child(2)"))
+			
+//			:nth-last-child(n|even|odd|formula){1.9+}选择所有他们父元素的第n个子元素。计数从最后一个元素开始到第一个
+//			:nth-last-of-type(n|even|odd|formula){1.9+}选择的所有他们的父级元素的第n个子元素，计数从最后一个元素到第一个
+			$("ul li:nth-last-child(2)");
+			console.log($("ul li:nth-last-child(2)"))
+			
+//			:only-child如果某个元素是父元素中唯一的子元素，那将会被匹配
+//			如果父元素中含有其他元素，那将不会被匹配。（注：这里的其他元素并不包含文本节点，如：<p><img/>图片</p>，用$('p img:only-child')是可以匹配
+			$("ul li:only-child")
+			console.log($("ul li:only-child"))
+			
+			
+		</script>
+	</body>
+</html>

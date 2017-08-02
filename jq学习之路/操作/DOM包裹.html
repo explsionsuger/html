@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  #orig, #copy, #copy-correct {
+    float: left;
+    width: 20%;
+  }
+  .clear{
+  	clear: both;
+  	font-weight: bold;
+  }
+  div { border:2px blue solid; margin:2px; padding:2px; }
+  p { background:yellow; margin:2px; padding:2px; }
+  strong { color:red; }
+</style>
+</head>
+<body>
+	<div class="container">
+	  <div class="inner">Hello</div>
+	  <div class="inner">Goodbye</div>
+	</div>
+	
+  <span>Span Text</span>
+  <strong>What about me?</strong>
+  <span>Another One</span>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		.wrap( wrappingElement )在集合中匹配的每个元素周围包裹一个HTML结构。
+		$('.inner').wrap(function() {
+		  return '<div class="' + $(this).text() + '" />';
+		});
+		
+//		.wrapAll( wrappingElement )在集合中所有匹配元素的外面包裹一个HTML结构。
+//		为 span 标签包裹一个对象树。注意，任何 span 之间的元素都不会被包裹，即使是 span 之间的空格也不会被包裹
+		$("span").wrapAll("<div><div><p><em><b></b></em></p></div></div>");
+		
+//		.wrapInner( wrappingElement ) 在匹配元素里的内容外包一层结构。
+		$('.inner').wrapInner('<div class="new" />');
+		
+		
+	</script> 
+</body>
+</html>

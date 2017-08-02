@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+</style>
+</head>
+<body>
+	 <p>Type 'mmp' to validate.</p>
+	<form action="javascript:console.log('success!');">
+		  <input id="target1" type="text" value="Field 1" />
+		  <input id="target2" type="text" value="Field 2" />
+		  <input type="submit"/>
+		</form>
+		<span></span>
+		<div id="other">
+		  Trigger the handler
+		</div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.blur( handler(eventObject) )为 "blur" 事件绑定一个处理函数，或者触发元素上的 "blur" 事件
+	var num = 0;
+	$('#target1').blur(function() {
+	  $("#other").text("target trigger blur " + ++num);
+	});
+	
+//	.change( handler )为JavaScript 的 "change" 事件绑定一个处理函数，或者触发元素上的 "change" 事件
+	$(document).ready(function(){
+		  $("#target1").blur();
+		});
+	$('#target2').change(function() {
+	  $("#other").text('Handler for .change() called.');
+	});
+
+//	.focus( handler(eventObject) ) 为 JavaScript 的 "focus" 事件绑定一个处理函数，或者触发元素上的 "focus" 事件
+//在页面显示时，将焦点移到 id 为 'target1' 的 input 元素上：
+	$(document).ready(function(){
+	  $("#target1").focus();
+	});
+	$('#target1').focus(function() {
+	  $("#other").text('Handler for .focus() called.');
+	});
+	
+//	.select( handler(eventObject) )为 JavaScript 的 "select" 事件绑定一个处理函数，或者触发元素上的该事件
+	$(":input").select( function () {
+	  $("div").text("Something was selected").show().fadeOut(2000);
+	});
+	
+//	.submit( handler(eventObject) )为 JavaScript 的 "submit" 事件绑定一个处理函数，或者触发元素上的该事件
+	$("form").submit(function() {
+  if ($("input:first").val() == "mmp") {
+    $("span").text("mmp good...").show();
+    return true;
+  }
+  $("span").text("Not mmp!").show().fadeOut(1000);
+	  return false;
+	});
+	</script> 
+</body>
+</html>

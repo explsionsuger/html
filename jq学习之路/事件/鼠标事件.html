@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  p { color:red; margin:5px; cursor:pointer; }
+  p:hover { background:yellow; }
+  div.rightclick {
+    background: blue;
+    color: white;
+    height: 100px;
+    width: 150px;
+ }
+  div.contextmenu {
+    background: yellow;
+    color: black;
+  }
+  div.dbl { background:yellow;color:black; }
+  div.out {
+		width:40%;
+		height:120px;
+		margin:0 15px;
+		background-color:#D6EDFC;
+		float:left;
+	}
+	div.in {
+		width:60%;
+		height:60%;
+		background-color:#FFCC00;
+		margin:10px auto;
+	}
+	div.mousemove { width:220px; height:170px; margin: 10px 50px 10px 10px;
+      background:yellow; border:2px groove; float:right; }
+p.mousemoveP { margin:0; margin-left:10px; color:red; width:220px;
+    height:120px; padding-top:70px;
+    float:left; font-size:14px; }
+span.mousemoveS { display:block; }
+</style>
+</head>
+<body>
+	 <p class="click">First Paragraph</p>
+ 
+  <p class="click">Second Paragraph</p>
+  <p class="click">Yet one more Paragraph</p>
+  <div class="rightclick">Right click the block</div>
+  
+  
+  <p class="focusin"><input type="text" /> <span>focusin fire</span></p>
+<p class="focusin"><input type="password" /> <span>focusin fire</span></p>
+
+
+    <li class='fade'>hover</li>
+ 
+    <li class='fade'>hover</li>
+    
+    <p class="mouse">Press mouse and release here.</p>
+    
+    <div class="out overout"><p>move your mouse</p><div class="in overout"><p>move your mouse</p><p>0</p></div><p>0</p></div>
+ 
+<div class="out enterleave"><p>move your mouse</p><div class="in enterleave"><p>move your mouse</p><p>0</p></div><p>0</p></div>
+
+<p class="mousemoveP">
+  <span class="mousemoveS">Move the mouse over the div.</span>
+  <span class="mousemoveS">&nbsp;</span>
+</p>
+ 
+<div class="mousemove"></div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.click( handler(eventObject) )为 JavaScript 的"click" 事件绑定一个处理器，或者触发元素上的 "click" 事件
+	$("p.click").click(function () {
+      $(this).slideUp();
+    });
+    
+//  .contextmenu( handler )当在一个元素上点击鼠标的右键时,contextmenu事件被发送到这个元素上,但在显示的上下文菜单(右键菜单)之前
+    var div = $( "div:first" );
+		div.contextmenu(function() {
+		  div.toggleClass( "contextmenu" ).text("contextmenu");
+		});
+		
+//		一个元素被双击时将触发 dblclick 事件。任何HTML元素都可以收到此事件
+		div.dblclick(function() {
+		  div.toggleClass( "dbl" ).text("dblclick");
+		});
+		
+//		focusin 事件会在元素（或者其内部的任何元素）获得焦点时触发
+		$("p.focusin").focusin(function() {
+		  $(this).find("span").css('display','inline').fadeOut(1000);
+		});
+		
+//		.hover()方法是同时绑定 mouseenter和 mouseleave事件。等价于$(selector).mouseenter(handlerIn).mouseleave(handlerOut);
+		$("li.fade").hover(function(){$(this).fadeOut(100);$(this).fadeIn(500);});
+		
+//		当鼠标指针在元素上和按下鼠标键，mousedown事件被发送到这个元素
+		 $("p.mouse").mouseup(function(){
+      $(this).append('<span style="color:#F00;">Mouse up.</span>');
+    }).mousedown(function(){
+      $(this).append('<span style="color:#00F;">Mouse down.</span>');
+    });
+    
+     var i = 0;
+//    mouseover和	mouseout事件将被发送到Inner元素，然后冒泡到Outer元素 ，子元素也会触发
+    $("div.overout").mouseover(function(){
+      $("p:first",this).text("mouse over");
+      $("p:last",this).text(++i);
+    }).mouseout(function(){
+      $("p:first",this).text("mouse out");
+    });
+ 
+    var n = 0;
+//  mouse enters（鼠标进入）			 mouse leaves（鼠标离开）
+    $("div.enterleave").mouseenter(function(){
+      $("p:first",this).text("mouse enter");
+      $("p:last",this).text(++n);
+    }).mouseleave(function(){
+      $("p:first",this).text("mouse leave");
+    });
+    
+//  mousemove事件是当鼠标指针移动时触发的,处理器做任何重大的处理，或者如果该事件存在多个处理函数，
+//  这可能造成浏览器的严重的性能问题。因此，优化mousemove处理程序这一点很重要，当不再需要他们时应尽快解除绑定。
+    $("div.mousemove").mousemove(function(e){
+  $(".mousemoveS:first").text(" e.pageX :"+e.pageX+", e.pageY  : " + e.pageY);
+  $(".mousemoveS:last").text(" e.clientX :"+e.clientX+", e.clientY  : " + e.clientY);
+});
+	</script> 
+</body>
+</html>

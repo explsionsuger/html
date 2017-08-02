@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+   span { background:#def3ca; padding:3px; float:left; }
+</style>
+</head>
+<body>
+	 <button id="hidr">Hide</button>
+<button id="showr">Show</button>
+<button id="toggle">toggle</button>
+<div>
+ 
+  <span>Once</span> <span>upon</span> <span>a</span>
+  <span>time</span> <span>there</span> <span>were</span>
+  <span>three</span> <span>programmers...</span>
+ 
+</div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.hide( [duration ] [, complete ] ) duration (默认: 400)一个字符串或者数字决定动画将运行多久。complete在动画完成时执行的函数
+//	.hide( options ) &  .show( options ) &  .toggle( options ) 
+//	options一组包含动画选项的值的集合。 支持的选项:
+//	duration (default: 400)一个字符串或者数字决定动画将运行多久。（默认值: "normal"， 三种预定速度的字符串("slow", "normal", 或 "fast")或表示动画时长的毫秒数值(如：1000) ）
+//	easing (default: swing)表示过渡使用哪种缓动函数。（jQuery自身提供"linear" 和 "swing"，其他效果可以使用jQuery Easing Plugin插件）
+//	queue (default: true)一个布尔值，指示是否将动画放置在效果队列中。如果为false时，将立即开始动画。 从jQuery1.7开始，队列选项也可以接受一个字符串，
+//	在这种情况下，在动画被添加到由该字符串表示的队列中。当一个自定义的队列名称被使用，动画不会自动启动;你必须调用.dequeue("queuename")来启动它。
+//	specialEasing一组一个或多个通过相应的参数和相对简单函数定义的CSS属性 ( 1.4 新增)
+//	step每个动画元素的每个动画属性将调用的函数。这个函数为修改Tween 对象提供了一个机会来改变设置中得属性值。
+//	progress每一步动画完成后调用的一个函数，无论动画属性有多少，每个动画元素都执行单独的函数。 (version added: 1.8)
+//	complete在动画完成时执行的函数。
+//	done在动画完成时执行的函数。 (他的Promise对象状态已完成). (version added: 1.8)
+//	fail动画失败完成时执行的函数。(他的Promise对象状态未完成)。 (version added: 1.8)
+//	always在动画完成或未完成情况下停止时执行的函数。(他的Promise对象状态已完成或未完成)。 (version added: 1.8)
+$("#hidr").click(function () {
+  $("span:last-child").hide("fast", function () {
+    // use callee so don't have to name the function
+    $(this).prev().hide("fast", arguments.callee);
+  });
+});
+$("#showr").click(function () {
+  $("span").show(800);
+});
+
+//.toggle( [duration ] [, complete ] ) 显示或隐藏匹配元素
+$("#toggle").click(function () {
+  $("span").toggle(800);
+});
+
+	</script> 
+</body>
+</html>

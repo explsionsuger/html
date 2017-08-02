@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  div#block {
+background-color:#bca;
+width:100px;
+border:1px solid green;
+}
+div.cleanQueue { margin:3px; width:40px; height:40px;
+    position:absolute; left:0px; top:130px;
+    background:green; display:none; }
+div.newcolor { background:blue; }
+div.delay { position: absolute; width: 60px; height: 60px; float: left; }
+.first { background-color: #3f3; left: 200px;}
+.second { background-color: #33f; left: 280px;}
+ div.dequeue { margin:3px; width:50px; position:absolute;
+  height:50px; left:10px; top:230px;
+  background-color:yellow; }
+  div.red { background-color:red; }
+</style>
+</head>
+<body>
+	<button id="go">&raquo; Run</button>
+ 
+<div id="block">Hello!</div>
+
+ <button id="start">Start</button>
+<button id="stop">Stop</button>
+<div class="cleanQueue"></div>
+<p><button id="delay">Run</button></p>
+<div class="delay first"></div>
+<div class="delay second"></div>
+<button id="dequeue">Start dequeue</button>
+<div class="dequeue"></div>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.animate( properties [, duration ] [, easing ] [, complete ] ) 根据一组 CSS 属性，执行自定义动画
+	$("#go").click(function(){
+  $("#block").animate({
+    width: "70%",
+    opacity: 0.4,
+    marginLeft: "0.6in",
+    fontSize: "3em",
+    borderWidth: "10px"
+  }, 1500 );
+});
+
+
+$("#start").click(function () {
+  var myDiv = $("div.cleanQueue");
+  myDiv.show("slow");
+  myDiv.animate({left:'+=200'},5000);
+  myDiv.queue(function () {
+    var _this = $(this);
+    _this.addClass("newcolor");
+//  .dequeue( [queueName ] ) 执行匹配元素队列的下一个函数
+    _this.dequeue();
+  });
+ 
+  myDiv.animate({left:'-=200'},1500);
+  myDiv.queue(function () {
+    var _this = $(this);
+    _this.removeClass("newcolor");
+//  .dequeue( [queueName ] ) 执行匹配元素队列的下一个函数
+    _this.dequeue();
+  });
+  myDiv.slideUp();
+ 
+});
+ 
+$("#stop").click(function () {
+  var myDiv = $("div.cleanQueue");
+  myDiv.clearQueue();
+//.stop( [clearQueue ] [, jumpToEnd ] )停止匹配元素当前正在运行的动画
+  myDiv.stop();
+});
+
+//.delay( duration [, queueName ] )设置一个延时来推迟执行队列中后续的项
+$("button#delay").click(function() {
+      $("div.first").slideUp(300).delay(800).fadeIn(400);
+      $("div.second").slideUp(300).fadeIn(400);
+    });
+    
+//  .dequeue( [queueName ] )执行匹配元素队列的下一个函数
+    $("button#dequeue").click(function () {
+  $("div.dequeue").animate({left:'+=200px'}, 2000);
+  $("div.dequeue").animate({top:'200px'}, 600);
+  $("div.dequeue").queue(function () {
+    $(this).toggleClass("red");
+    $(this).dequeue();
+  });
+  $("div.dequeue").animate({left:'10px', top:'230px'}, 700);
+});
+	</script> 
+</body>
+</html>

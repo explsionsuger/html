@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.highlight{
+				background: greenyellow;
+			}
+			p{
+				margin: 10px;				
+				padding: 3px;
+    			border: 2px solid #666;
+			}
+			div{ 
+				width:50px; 
+				height:70px; 
+				float:left; 
+				margin:5px;
+	        	background:rgb(255,140,0); 
+	        	cursor:pointer; 
+				box-sizing: border-box;
+				padding: 3px;
+    			border: 2px solid #666;
+        	}
+		</style>
+	</head>
+	<body>
+			<p>1 </p>
+			<p>2 </p>
+			<p id="thr" class="three">3 </p>
+			<p>4 </p>
+			<div>d</div>
+			<div>d</div>
+			<div>d</div>
+			<div>d</div>
+			<div>d</div>
+		<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			.height()获取匹配元素集合中的第一个元素的当前计算高度值。
+			console.log("div height:"+$("div").height())
+//			注意.height()总是返回容器的高度,不管CSS box-sizing属性值。
+//			截至jQuery 1.8，这可能需要检索的CSS的宽度加加上box-sizing的属性，
+//			然后当元素有 box-sizing: border-box时候，减去这个元素上任何潜在border和padding值。
+//			为了避免这种问题，使用.css( "height" )而非.height()
+			console.log("div css height:"+$("div").css("height"))
+//			.height( value )返回: jQuery 设置每一个匹配元素的高度值。
+			$("div").one('click', function () {
+		      $(this).height(30)
+		             .css({cursor:"auto", backgroundColor:"green"});
+		    });
+			//width()同上
+			console.log("div width:"+$("div").width())
+			console.log("div css width:"+$("div").css("width"))
+			
+//			.innerHeight()返回: Number,为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，但是不包括border。
+			p = $("p:first");
+			$("p:last").text("p innerHeight:" + p.innerHeight());
+			//.innerHeight( value ), value可以是 100px, 50%, 或者 auto,默认单位px
+			p.innerHeight(50)
+			//innerWidth（）同上
+			console.log("p.innerWidth:"+p.innerWidth())
+			
+//			.outerHeight( [includeMargin ] ) includeMargin (默认: false)一个布尔值，表明是否在计算时包含元素的margin值。
+			$( "p:last" ).text(
+			  "outerHeight:" + p.outerHeight() +
+			  " , outerHeight( true ):" + p.outerHeight( true ) );
+			//outerWidth()同上
+			console.log("p.outerWidth():"+p.outerWidth())
+			console.log("p.outerWidth(ture):"+p.outerWidth(true))
+			console.log("p.clientwidth:"+p[0].clientWidth)
+			console.log("p.offsetWidth:"+p[0].offsetWidth)
+		</script>
+	</body>
+</html>

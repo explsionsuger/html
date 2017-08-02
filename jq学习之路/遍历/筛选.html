@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  .highlight{background-color: yellow}
+  strong { color:red; }
+</style>
+</head>
+<body>
+	<ul>
+     <li><strong>list</strong> item 1 -
+    one strong tag</li>
+  <li><strong>list</strong> item <strong>2</strong> -
+    two <span>strong tags</span></li>
+    <li>list item 3</li>
+    <li>list item 4
+	    <ul>
+	      <li>list item 2-a</li>
+	      <li>list item 2-b</li>
+	    </ul>
+    </li>
+    <li>list item 5</li>
+    <li>list item 6</li>
+  </ul>
+  
+   <p><span>Look:</span> <span>This is some text in a paragraph.</span> <span>This is a note about it.</span></p>
+   
+  <form>
+    <input type="text" name="name" value="John"/>
+ 
+    <input type="text" name="password" value="password"/>
+    <input type="text" name="url" value="http://ejohn.org/"/>
+ 
+  </form>
+   <p class="map"><b>Values: </b></p>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.eq( index )减少匹配元素的集合为指定的索引的哪一个元素,若index<0,则从最后一位开始数
+//	$('li').eq(-2).css('background-color', 'red');
+	
+//	.filter( selector )筛选元素集合中匹配表达式 或 通过传递函数测试的 那些元素集合
+//	 $('li').filter(':even').css('background-color', 'red');
+	 $('li').filter(function(index) {
+			return index % 3 == 2;
+	}).css('background-color', 'red');
+	
+//	.first() 获取匹配元素集合中第一个元素
+	$("p span").first().addClass('highlight');
+	
+//	.has( selector ) 筛选匹配元素集合中的那些有相匹配的选择器或DOM元素的后代元素
+	$('li').has('ul').css('background-color', 'green');
+	
+//	.is( selector )返回: Boolean, 判断当前匹配的元素集合中的元素，是否为一个选择器，DOM元素，或者jQuery对象，如果这些元素至少一个匹配给定的参数，那么返回true
+		$("li").click(function() {
+	  var $li = $(this),
+	    isWithTwo = $li.is(function() {
+	      return $('strong', this).length === 2;
+	    });
+	  if ( isWithTwo ) {
+	    $li.css("background-color", "green");
+	  } else {
+	    $li.css("background-color", "red");
+	  }
+	});
+	
+//	.last()获取匹配元素集合中最后一个元素
+	$('li').last().css('background-color', 'yellow');
+	
+//	.map( callback(index, domElement) )通过一个函数匹配当前集合中的每个元素,产生一个包含新的jQuery对象
+	$("p.map").append( $("input").map(function(){
+      return $(this).val();
+    }).get().join(", ") );
+    
+//  .not( selector )从匹配的元素集合中移除指定的元素
+    $('li').not(':even').css('background-color', 'skyblue');
+    
+//  .slice( start [, end ] )根据指定的下标范围，过滤匹配的元素集合，并生成一个新的 jQuery 对象
+//  end从 0 开始计数的下标。代表将要被选择的元素的结束下标。如果指定的下标是一个负数，那么代表从末尾开始计数。如果忽略此参数，则选择的范围是从 start 开始，一直到最后。
+    $('li').slice(6).css('background-color', 'orange');
+	</script> 
+</body>
+</html>

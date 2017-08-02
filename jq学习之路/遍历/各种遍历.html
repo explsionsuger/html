@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+   div.add { width:60px; height:60px; margin:10px; float:left; }
+ p.addP { clear:left; font-weight:bold; font-size:16px;
+     color:blue; margin:0 10px; padding:2px; }
+</style>
+</head>
+<body>
+	<div class="add"></div>
+	<div class="add"></div>
+	<div class="add"></div>
+	<div class="add"></div>
+	<div class="add"></div>
+	<div class="add"></div>
+ 
+  <p class="addP">Added this... (notice no border)</p>
+  <br />
+  
+  <div class="container">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+  do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+  <br /><br />
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+  laboris nisi ut aliquip ex ea commodo consequat.
+  <br /> <br />
+  Duis aute irure dolor in reprehenderit in voluptate velit 
+  esse cillum dolore eu fugiat nulla pariatur.
+</div>
+
+<ul>
+    <li>foo</li>
+    <li>bar</li>
+</ul>
+ <p class="end"><span>Hello</span>, how are you?</p>
+  <script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//	.add( selector )创建一个新的jQuery对象 ，元素添加到匹配的元素集合中
+	$("div").css("border", "2px solid red")
+	        .add("p")
+	        .css("background", "yellow");
+	        
+//	.contents() 获得匹配元素集合中每个元素的子元素，包括文字和注释节点
+	$('.container').contents().filter(function() {
+	return this.nodeType == 3;
+		})
+		  .wrap('<p></p>')
+		.end()
+		.filter('br')
+		.remove();
+		
+//		.each( function(index, Element) )遍历一个jQuery对象，为每个匹配元素执行一个函数
+		$( "li" ).each(function( index ) {
+		  console.log( index + ": " + $(this).text() );
+		});
+		
+//		.end()终止在当前链的最新过滤操作，并返回匹配的元素的以前状态
+		$("p.end").find("span").end().css("border", "12px red solid");
+	</script> 
+</body>
+</html>

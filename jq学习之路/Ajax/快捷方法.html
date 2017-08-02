@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="#" id="form1">
+			<p>评论:</p>
+			<p>姓名：<input type="text" name="username" id="username"/></p>
+			<p>内容：<textarea name="content" id="content" rows="2" cols="20"></textarea></p>
+			<input type="button" id="send" value="提交" />
+		</form>
+			<div class="comment">已有评论：</div>
+			<div id="resText"></div>
+	<script src="../js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		jQuery.get( url [, data ] [, success ] [, dataType ] )使用一个HTTP GET请求从服务器加载数据
+	//url一个包含发送请求的URL字符串.
+	//data一个普通对象或字符串，通过请求发送给服务器。
+	//success当请求成功后执行的回调函数。 如果提供dataType选项，那么这个success选项是必须的， 但你可以使用null或jQuery.noop作为占位符。
+	//dataType从服务器返回的预期的数据类型。默认：智能猜测（xml, json, script, text，html）。
+	//$.ajax({
+	//url: url,
+	//data: data,
+	//success: success,
+	//data类型:dataType
+	//});
+//var jqxhr = $.get("test.html", { name: "John", time: "2pm" }, function(data){
+//  console.log("success");
+//  console.log(data)
+//   $('body').append( "Name: " + data.name ) // John
+//            .append( "Time: " + data.time ); //  2pm
+// 
+//})
+//.success(function() { console.log("second success"); })
+//.error(function() { console.log("error"); })
+//.complete(function() { console.log("complete"); });
+//jqxhr.complete(function(){ console.log("second complete"); });
+$(function(){
+	$("#send").click(function(){
+		$("#resText").load("test.html .para");
+	})
+})
+
+	</script>
+	</body>
+</html>
